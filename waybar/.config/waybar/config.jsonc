@@ -1,8 +1,8 @@
 {
   "position": "top",
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio", "battery", "clock"],
+  "modules-left": ["tray","hyprland/window"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["custom/media","network", "pulseaudio", "cpu","memory", "clock","custom/notification"],
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -36,5 +36,53 @@
           "default": ["", "", " "]
       },
       "on-click": "pavucontrol"
-  }
+  },
+  "custom/media": {
+        "interval": 10,
+        "format": "{icon}  {text}",
+        "return-type": "json",
+        "max-length": 20,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "/usr/bin/python3.13 $HOME/workspace/script/mediaplayer.py",
+        "on-click": "playerctl --player spotify play-pause"
+    },
+     "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon} ",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "cpu": {
+        "interval": 15,
+        "format": "  {}%",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": "󰍛  {}%",
+        "max-length": 10
+    }
 }

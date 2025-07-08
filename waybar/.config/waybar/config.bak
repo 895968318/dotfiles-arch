@@ -1,0 +1,130 @@
+{
+    "include":[
+        "/home/wanzhengwang/.config/waybar/modules/system_container"
+    ],
+    "layer": "top",
+    "modules-left": [
+        "custom/launcher",
+        "cpu",
+        "memory",
+        "tray",
+        "custom/app-name"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "group/system-container",
+        "custom/media",
+        "clock",
+        "network",
+        "custom/power",
+        "custom/notification"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+    "network": {
+        "tooltip": false,
+        "format-wifi": "  {essid}",
+        "format-ethernet": ""
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "clock": {
+        "timezone": "Asia/Shanghai",
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "cpu": {
+        "interval": 15,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10
+    },
+    "custom/media": {
+        "interval": 10,
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 20,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "/usr/bin/python3.13 $HOME/workspace/script/mediaplayer.py",
+        "on-click": "playerctl --player spotify play-pause"
+    },
+    "custom/launcher": {
+        "format": " ",
+        "on-click": "wofi --show drun",
+        "on-click-right": "killall wofi"
+    },
+    "custom/power": {
+        "format": " ",
+        "on-click": "bash ~/.config/rofi/leave/leave.sh"
+    },
+    "custom/app-name": {
+        "format": "{text}",
+        "interval": 2,
+        "exec": "~/workspace/script/waybar/title/win_class_way.sh",
+        "tooltip": false,
+        "return-type": "json"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon} ",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}

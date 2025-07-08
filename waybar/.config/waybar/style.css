@@ -54,6 +54,8 @@ button:hover {
     background-color: #eb4d4b;
 }
 
+#custom-notification,
+#custom-media,
 #pulseaudio,
 #clock,
 #battery,
@@ -73,6 +75,25 @@ button:hover {
   margin-right: 4px;
   padding-left: 4px;
   padding-right: 4px;
+}
+
+#cpu{
+    color: @teal;
+    border-bottom: 2px solid @teal;
+}
+#memory{
+    color: @red;
+    border-bottom: 2px solid @red;
+}
+
+#custom-notification{
+    color: @lavender;
+    border-bottom: 2px solid @lavender;
+}
+
+#custom-media{
+    color: @green;
+    border-bottom: 2px solid @green;
 }
 
 #clock {
