@@ -47,7 +47,7 @@
             "default": " "
         },
         "escape": true,
-        "exec": "/usr/bin/python3.13 $HOME/workspace/script/mediaplayer.py",
+        "exec": "/usr/bin/python3.13 $HOME/dotfiles/scripts/waybar/mediaplayer.py",
         "on-click": "playerctl --player spotify play-pause"
     },
      "tray": {
